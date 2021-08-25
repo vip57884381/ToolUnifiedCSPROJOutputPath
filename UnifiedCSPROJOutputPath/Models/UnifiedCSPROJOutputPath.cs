@@ -180,13 +180,7 @@ fatal:
                             search_Folder_temp_BAK
                         );
                     }
-
-                    if (
-                        MicrosoftWin32Custom.deleteFile(
-                            search_Folder_temp
-                        ) == false
-                    )
-                        goto fatal;
+                    
 
                     foreach (XmlNode xmlNodeTemp in xmlNodeList)
                     {
@@ -199,6 +193,15 @@ fatal:
 
                     if (isChangFg == true)
                     {
+                        if (
+                            MicrosoftWin32Custom.deleteFile(
+                                search_Folder_temp
+                            ) == false
+                        )
+                        {
+                            continue;
+                        }
+
                         xmlDocument.Save(
                             search_Folder_temp
                         );
